@@ -1,0 +1,32 @@
+Question
+========
+Which of the following is the definition of a normal good?
+
+Answerlist
+----------
+* $\frac{\partial x^*_c}{\partial I} \geq 0$
+* $\frac{\partial x^*}{\partial I} \geq 0$
+* $\frac{\partial x^*}{\partial p_x} \geq 0$
+* $\frac{\partial E^*}{\partial x} \geq 0$
+* $\frac{\partial V^*}{\partial x} \geq 0$
+
+Solution
+================
+Take the derivative of demand w.r.t income
+
+Answerlist
+----------
+* False
+* True
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: AA_Topic_4_MC
+extype: mchoice
+exsolution: 01000
+exshuffle: 5
+

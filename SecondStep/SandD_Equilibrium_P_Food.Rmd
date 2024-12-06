@@ -1,0 +1,55 @@
+---
+title: "Equilibrium Price"
+output: html_document
+---
+
+Question
+========
+```{r echo=FALSE, fig.retina=2, fig.cap="", message=FALSE, results='asis' }
+
+# This code generate the equilibrium price and quantity. In this case only the p* is asked
+
+# QD = - a P + b
+# QS = c P - f
+
+# Demand
+a <- {a} # Slope demand curve
+b <- {b} # x-intercept demand curve
+
+# Supply
+c <- {c} # Slope supply curve
+f <- {f} # x-intecept supply curve 
+
+
+pstar <- (b+f)/(a+c)
+qstart <- c*((b+f)/(a+c)) - f
+
+# 
+#extol: `r 0.05*x`
+#cat("x is:", x, "\n")
+
+extol_value <- 0.05 * pstar
+extol_value <- round(extol_value, 2) # Optional: round to desired precision
+```
+
+The market demand for {good} is given by the following demand and supply equations
+
+$QD$ = -{a} P + {b}
+
+$QS$ = {c} P - {f}
+
+What is the equilibrium price of {good}?
+
+Solution
+========
+`r format(round(pstar, 2), scientific = FALSE)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution:`r format(round(pstar, 2), scientific = FALSE)`
+extol: `r extol_value`
+exname: SandD_pstar
+

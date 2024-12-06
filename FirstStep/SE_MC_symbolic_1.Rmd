@@ -1,0 +1,137 @@
+```{r, echo=FALSE, results="hide"}
+library(Ryacas0)
+
+px <- Sym("px")
+py <- Sym("py")
+U <- Sym("U")
+I <- Sym("I")
+
+b <- 0.64
+a <- 1-b
+
+
+# Define the correct expression. for the IE 
+E <- U*((px/b)^b)*((py/(1-b))^(1-b))
+xc <- deriv(E,px)
+diff_expr <- deriv(xc, px)
+
+
+# Define decoy answers 
+E_2 <- U*(px/b)^(1-b)*((py/(1-b))^(b))
+xc_2 <- deriv(E_2,px)
+diff_expr_2 <- deriv(xc_2, px)
+
+
+E_3 <- (U^(1-b))*((px/b)^b)*((py/(1-b))^(b-1))
+xc_3 <- deriv(E_3,px)
+diff_expr_3 <- deriv(xc_3, px)
+
+E_4 <- U*((px/b)^b)*((py/(b))^(1-b))
+xc_4 <- deriv(E_4, px)
+diff_expr_4 <- deriv(xc_4, px)
+
+E_5 <- (U^(b))*((px/b)^b)*((py/(1-b))^(1-b))
+xc_5 <- -deriv(E_5, py)
+diff_expr_5 <- -deriv(xc_5, U)
+
+
+# # Define decoy answers 
+# expr_2 <- x/y^b
+# expr_3 <- b*log(x) + y/b
+# expr_4 <- y/x + x^b
+# expr_5 <- x^(-b) + y^b
+# 
+# # Differentiate with respect to x
+# #diff_expr <- deriv(expr, x)
+# 
+# diff_expr_2 <- deriv(expr_2, y)
+# diff_expr_3 <- deriv(expr_3, x)
+# diff_expr_4 <- deriv(expr_4, x)
+# diff_expr_5 <- deriv(expr_5, x)
+
+
+
+
+# Evaluate the differentiated expression
+result <- Simplify(diff_expr)
+
+result_2 <- Simplify(diff_expr_2)
+result_3 <- Simplify(diff_expr_3)
+result_4 <- Simplify(diff_expr_4)
+result_5 <- Simplify(diff_expr_5)
+
+
+
+# Convert to string for easier reading
+#latex_results <- TeXForm(substitute(result))
+#print(latex_results)
+
+#b<- {b}
+#a<- 1-b
+# Convert the result to LaTeX for use in markdown text
+latex_result <- TeXForm(result)
+
+
+latex_result_2 <- TeXForm(result_2)
+latex_result_3 <- TeXForm(result_3)
+latex_result_4 <- TeXForm(result_4)
+latex_result_5 <- TeXForm(result_5)
+
+#print(latex_result)
+# Assuming `latex_result` is your original LaTeX string that needs correction
+latex_result <- gsub("\\imath", "I", latex_result, fixed = TRUE)
+latex_result_2 <- gsub("\\imath", "I", latex_result_2, fixed = TRUE)
+latex_result_3 <- gsub("\\imath", "I", latex_result_3, fixed = TRUE)
+latex_result_4 <- gsub("\\imath", "I", latex_result_4, fixed = TRUE)
+latex_result_5 <- gsub("\\imath", "I", latex_result_5, fixed = TRUE)
+
+# Adjust LaTeX for subscripts manually
+latex_result <- gsub("px", "p_x", latex_result, fixed = TRUE)  # Replace px with p_x in the LaTeX
+latex_result_2 <- gsub("px", "p_x", latex_result_2, fixed = TRUE)  # Replace px with p_x  LaTeX
+latex_result_3 <- gsub("px", "p_x", latex_result_3, fixed = TRUE)  # Replace px with p_x in LaTeX
+latex_result_4 <- gsub("px", "p_x", latex_result_4, fixed = TRUE)  # Replace px with p_x in LaTeX
+latex_result_5 <- gsub("px", "p_x", latex_result_5, fixed = TRUE)  # Replace px with p_x in LaTeX
+
+latex_result <- gsub("py", "p_Y", latex_result, fixed = TRUE)  
+latex_result_2 <- gsub("py", "p_y", latex_result_2, fixed = TRUE) 
+latex_result_3 <- gsub("py", "p_y", latex_result_3, fixed = TRUE)  
+latex_result_4 <- gsub("py", "p_y", latex_result_4, fixed = TRUE)  
+latex_result_5 <- gsub("py", "p_y", latex_result_5, fixed = TRUE)  
+
+
+
+```
+
+Question
+========
+If $U=x^{`r b`}y^{`r a`}$ and using the compensated demand ($x^*_c$), which of the following expressions represents the substitution effect? (hint: keep $U$, do not substitute it).
+
+Answerlist
+----------
+* `r paste0("$", latex_result, "$")`
+* `r paste0("$", latex_result_2, "$")`
+* `r paste0("$", latex_result_3, "$")`
+* `r paste0("$", latex_result_4, "$")`
+* `r paste0("$", latex_result_5, "$")`
+
+
+Solution
+================
+
+
+
+Answerlist
+----------
+* True
+* False
+* False
+* False
+* False
+
+
+Meta-information
+================
+exname: AA_Topic_4_MC_SE_1
+extype: mchoice
+exsolution: 10000
+exshuffle: 5

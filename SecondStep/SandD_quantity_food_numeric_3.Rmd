@@ -1,0 +1,53 @@
+---
+title: "Equilibrium Quantity"
+output: html_document
+---
+
+Question
+========
+```{r echo=FALSE, fig.retina=2, fig.cap="", message=FALSE, results='asis' }
+
+# This code generate the equilibrium price and quantity. In this case only the q* is asked
+
+# QD = - a P + b
+# QS = c P + f
+
+# Demand
+a <- 11 # Slope demand curve
+b <- 1502 # x-intercept demand curve
+
+# Supply
+c <- 9.2 # Slope supply curve
+f <- 30 # x-intercept supply curve 
+
+
+pstar <- (b-f)/(a+c)
+qstar <- c*((b-f)/(a+c)) + f
+
+#cat("x is:", x, "\n")
+
+extol_value <- 0.05 * qstar
+extol_value <- round(extol_value, 2) # Optional: round to desired precision
+```
+
+The market demand for Sneakers is given by the following demand and supply equations
+
+$QD$ = -11 P + 1502
+
+$QS$ = 9.2 P + 30
+
+What is the equilibrium quantity of Sneakers?
+
+Solution
+========
+`r format(round(qstar, 2), scientific = FALSE)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution:`r format(round(qstar, 2), scientific = FALSE)`
+extol: `r extol_value`
+exname: SandD_qstar_v2
+

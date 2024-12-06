@@ -1,0 +1,90 @@
+---
+title: "Problem 1"
+output: html_document
+---
+Question
+========
+```{r echo=FALSE, fig.retina=2, fig.cap="", message=FALSE, results='asis' }
+
+library(ggplot2)
+
+slope<- 2
+xinter<- 100
+
+# Define a simple linear demand function: Qd = 100 - 5P
+demand_function <- function(P) {
+  xinter - slope*P
+}
+
+# Create a data frame for the demand curve
+prices <- seq(0, 50, by = 5)
+demand_df <- data.frame(Price = prices, Quantity = sapply(prices, demand_function))
+
+# Choose several prices and their corresponding quantities
+selected_prices <- seq(5, 50, by=5)
+selected_quantities <- sapply(selected_prices, demand_function)
+highlight_df <- data.frame(Price = selected_prices, Quantity = selected_quantities)
+
+selected_price <- 5 # change this to your selected price
+
+# Compute the quantity at the selected price using the demand function
+Q_at_P <- demand_function(selected_price)
+
+# Compute the price when Q=0 
+pup<- (xinter-0)/slope
+
+# Calculate the consumer surplus for a given price
+integrated_area <- integrate(demand_function, lower=selected_price, upper=pup)$value
+
+# Calculate the cost to the consumer 
+con_cost <- selected_price*Q_at_P
+
+# Consumer benefit 
+benefit <- integrated_area+con_cost
+
+sol<-round(benefit, digits=3)
+
+# Plot
+ggplot(demand_df, aes(x = Quantity, y = Price)) +
+  geom_line(linewidth=1.5) +
+  labs(title =" ", x = "Quantity", y = "Price") +
+  
+  # Highlight the selected prices and quantities with dashed lines
+  geom_segment(data = highlight_df, aes(x = 0, xend = Quantity, y = Price, yend = Price), linetype = "dashed") +
+  geom_segment(data = highlight_df, aes(x = Quantity, xend = Quantity, y = 0, yend = Price), linetype = "dashed") +
+  
+  # Optional: Add points at the intersections
+  geom_point(data = highlight_df, aes(x = Quantity, y = Price), color = "red", size = 3) +
+  
+  # Adjust the scales to eliminate extra space between the axis and data
+  scale_x_continuous(expand = c(0, 0), limits=c(0,105), breaks=c(unique(highlight_df$Quantity), 100)) +
+  scale_y_continuous(expand = c(0, 0), limits=c(0,52), breaks=seq(0, 52, by=5))  +
+  
+  # Refine theme for a clean background and emphasized axes
+  theme(
+    panel.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    axis.line = element_line(color = "black", linewidth =1.5),   # Emphasize the axis lines
+    axis.text = element_text(size=14)
+    )
+```
+
+Consider the figure shown. What is the consumer's total benefit when the P=$`r selected_price`?
+
+Solution
+========
+`r sol`
+
+Meta-information
+================
+extype: num
+exsolution:`r sol`
+extol: `r 0.03*sol`
+exname: delete_test
+
+
+
+
+

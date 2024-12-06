@@ -1,0 +1,59 @@
+---
+title: "PerfectSubstitutes"
+output: html_document
+---
+
+Question
+========
+```{r echo=FALSE, fig.retina=2, fig.cap="", message=FALSE, results='asis' }
+
+# This is the code to get the optimal level of x and y in the perfect substitutes
+
+# U =a x1 + b x2
+
+d <- {d}
+r <- {r}
+
+px <- {px}
+py <- {py}
+I <- {I}
+ 
+
+# Compare p1/p2 with a/b
+if(px/py > d/r) {
+  y <- I/py
+  x <- 0
+} else if(px/py < d/r) {
+  x<- I/px
+  y <- 0
+}
+
+# 
+#extol: `r 0.05*x`
+#cat("The comp x1 is:", x1c, "\n")
+
+extol_value <- 0.05 * y
+extol_value <- round(extol_value, 2) # Optional: round to desired precision
+```
+
+The consumer's utility function is the following: 
+
+$U=$ `r d` {x} $+$ `r r` {y}
+
+The price of {x} is \$`r px`, the price of {y} is \$`r py`, and the income of the consumer is \$`r format(I, scientific=FALSE)`
+
+What is the optimal amount of {y} that the consumer will purchase?
+
+Solution
+========
+`r format(round(y, 2), scientific = FALSE)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution:`r format(round(y, 2), scientific = FALSE)`
+extol: `r extol_value`
+exname: AAA_subs_numeric_food_y
+

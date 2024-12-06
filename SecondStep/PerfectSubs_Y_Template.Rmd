@@ -1,0 +1,62 @@
+---
+title: "PerfectSubstitutes"
+output: html_document
+---
+
+Question
+========
+```{r echo=FALSE, fig.retina=2, fig.cap="", message=FALSE, results='asis' }
+
+# This is the code to get the optimal level of x and y in the perfect substitutes
+
+# U =a x1 + b x2
+
+d <- {d}
+r <- {r}
+
+px <- {px}
+py <- {py}
+I <- {I}
+ 
+
+# Compare p1/p2 with a/b
+if(px/py > d/r) {
+  y <- I/py
+  x <- 0
+} else if(px/py < d/r) {
+  x<- I/px
+  y <- 0
+}
+
+# 
+#extol: `r 0.05*x`
+#cat("The comp x1 is:", x1c, "\n")
+
+extol_value <- 0.05 * y
+extol_value <- round(extol_value, 2) # Optional: round to desired precision
+```
+
+The consumer's utility function is the following: 
+\begin{equation}
+U= d x + r y
+\end{equation}
+
+
+Assume the following values for the utility function parameters, prices, and income:  $d$=`r d`, $r$=`r r`  $p_x$=`r px`, $p_y$=`r py`, and $I$=`r format(I, scientific=FALSE)`. 
+
+
+What is $y^*$?
+
+Solution
+========
+`r format(round(y, 2), scientific = FALSE)`
+
+
+
+Meta-information
+================
+extype: num
+exsolution:`r format(round(y, 2), scientific = FALSE)`
+extol: `r extol_value`
+exname: perfect_subs_numeric
+
